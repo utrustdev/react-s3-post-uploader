@@ -1,0 +1,22 @@
+{
+  "name": "react-s3-post-uploader",
+  "version": "1.0.0",
+  "description": "React component that handle uploading to S3 bucket via POST.",
+  "main": "index.js",
+  "author": "Zdenko Nevrala",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "xml-js": "^1.6.8"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.87.0",
+    "flow-remove-types": "^1.2.3"
+  },
+  "scripts": {
+    "build": "flow-remove-types src/ -d lib/",
+    "prepublish": "yarn run build"
+  }
+}

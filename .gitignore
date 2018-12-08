@@ -1,0 +1,15 @@
+# Logs
+logs
+*.log
+
+# Dependency directory
+node_modules
+
+# Generated files
+dist
+styleguide
+
+#IDE
+.idea
+
+.DS_Store

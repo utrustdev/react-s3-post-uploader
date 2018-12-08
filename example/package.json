@@ -1,0 +1,15 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Example for s3 post upload",
+  "main": "index.js",
+  "author": "Zdenko Nevrala",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "aws-sdk": "^2.373.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0"
+  }
+}
