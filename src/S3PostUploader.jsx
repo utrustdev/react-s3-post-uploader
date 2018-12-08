@@ -26,9 +26,9 @@ class S3PostUploader extends PureComponent<Props> {
     if (!(e.target instanceof window.HTMLInputElement)) {
       return;
     }
-    const {getCredentialsUrl} = this.props;
+    const {getCredentials} = this.props;
 
-    getCredentialsUrl(e.target.files[0], this.uploadToS3);
+    getCredentials(e.target.files[0], this.uploadToS3);
   };
 
   assignRef = (input: HTMLInputElement | null) => {
@@ -107,8 +107,8 @@ type S3Params = {
   acl: string,
   key: string,
   policy: string,
-  success_action_status: string,
-  'content-type': string,
+  success_action_status?: string,
+  'content-type'?: string,
   'x-amz-algorithm': string,
   'x-amz-credential': string,
   'x-amz-date': string,
@@ -121,7 +121,7 @@ type Props = {
   onFinish: (S3Result, File) => void,
   onError: Error => void,
   inputRef: HTMLInputElement => void,
-  getCredentialsUrl: (
+  getCredentials: (
     File,
     (File, {upload_url: string, params: S3Params}) => void,
   ) => void,

@@ -16,7 +16,9 @@
     "flow-remove-types": "^1.2.3"
   },
   "scripts": {
-    "build": "flow-remove-types src/ -d lib/",
+    "build-lib": "flow-remove-types src/ -d lib/",
+    "build-example": "flow-remove-types src/ -d example/src/components",
+    "build": "yarn build-lib & yarn build-example",
     "prepublish": "yarn run build"
   }
 }

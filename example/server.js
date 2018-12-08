@@ -2,6 +2,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
+const cors = require('koa2-cors');
 const AWS = require('aws-sdk');
 
 const awsConfig = {
@@ -14,14 +15,14 @@ const awsConfig = {
 };
 
 const app = new Koa();
-const PORT = 3000;
+const PORT = 5000;
 const router = new Router();
 const s3 = new AWS.S3();
 
 AWS.config.update(awsConfig.secrets);
 
 async function getCredentials(ctx) {
-  params = {
+  const params = {
     Bucket: awsConfig.bucket,
     Fields: {
       key: ctx.request.body.filename,
@@ -46,6 +47,7 @@ async function getCredentials(ctx) {
 router.post('/get_credentials', getCredentials);
 
 app.use(bodyParser());
+app.use(cors());
 app.use(router.routes());
 
 const server = app.listen(PORT, () => {
