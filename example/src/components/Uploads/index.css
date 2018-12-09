@@ -1,2 +1,10 @@
+.uploads {
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+input[type='file'] {
+  display: none;
+}
 .errorMessage {
 }

@@ -1,6 +1,13 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import S3PostUploader from '../S3PostUploader';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './index.css';
 
@@ -14,6 +21,14 @@ class Uploads extends Component {
   onClick = event => {
     event.preventDefault();
     this.uploadInput.click();
+  };
+
+  openAttachment = url => {
+    return event => {
+      event.preventDefault();
+      const win = window.open(url, '_blank');
+      win.focus();
+    };
   };
 
   setInputRef = input => {
@@ -85,19 +100,23 @@ class Uploads extends Component {
     const {attachments} = this.state;
 
     return (
-      <div className="attachments">
+      <List className="attachments">
         <h3>Attachments</h3>
         {attachments.map(attachment => (
-          <a
-            className="attachment"
+          <ListItem
             key={attachment.etag}
-            target="_blank"
-            rel="noopener noreferrer"
-            href={attachment.location}>
-            {attachment.key}
-          </a>
+            onClick={this.openAttachment(attachment.location)}
+            button>
+            <Avatar>
+              <ImageIcon />
+            </Avatar>
+            <ListItemText
+              primary={attachment.key}
+              secondary={attachment.location}
+            />
+          </ListItem>
         ))}
-      </div>
+      </List>
     );
   };
 
@@ -117,13 +136,13 @@ class Uploads extends Component {
   renderButton = () => {
     const {isLoading} = this.state;
 
-    if (isLoading) return <button type="button">Uploading ...</button>;
+    if (isLoading) return <CircularProgress />;
 
     return (
       <div>
-        <button onClick={this.onClick} type="button">
+        <Button onClick={this.onClick} variant="outlined" component="span">
           Upload Attachments
-        </button>
+        </Button>
         {this.renderError()}
       </div>
     );
@@ -131,7 +150,7 @@ class Uploads extends Component {
 
   render() {
     return (
-      <div id="uploader">
+      <div class="uploads">
         {this.renderAttachments()}
         <S3PostUploader
           onProgress={this.onUploadProgress}
