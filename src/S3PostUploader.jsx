@@ -104,7 +104,7 @@ type Error = {
 };
 
 type S3Params = {
-  acl: string,
+  acl?: string,
   key: string,
   policy: string,
   success_action_status?: string,

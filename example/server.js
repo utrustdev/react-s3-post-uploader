@@ -13,19 +13,20 @@ const awsConfig = {
   },
   bucket: 'bucket',
 };
+AWS.config.update(awsConfig.secrets);
 
 const app = new Koa();
 const PORT = 5000;
 const router = new Router();
 const s3 = new AWS.S3();
 
-AWS.config.update(awsConfig.secrets);
-
 async function getCredentials(ctx) {
   const params = {
     Bucket: awsConfig.bucket,
     Fields: {
-      key: ctx.request.body.filename,
+      key: [ctx.request.body.path, ctx.request.body.filename].join('/'),
+      success_action_status: '201',
+      acl: 'public-read',
     },
     conditions: {
       acl: 'public-read',

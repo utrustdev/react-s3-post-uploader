@@ -8,6 +8,7 @@ class Uploads extends Component {
   state = {
     isLoading: false,
     uploadError: undefined,
+    attachments: [],
   };
 
   onClick = event => {
@@ -15,8 +16,18 @@ class Uploads extends Component {
     this.uploadInput.click();
   };
 
+  setInputRef = input => {
+    this.uploadInput = input;
+  };
+
   setUploadState = (loading, error) => {
     this.setState({isLoading: loading, uploadError: error});
+  };
+
+  addAttachment = attachment => {
+    this.setState(prevState => ({
+      attachments: [...prevState.attachments, attachment],
+    }));
   };
 
   onUploadProgress = () => {
@@ -24,6 +35,7 @@ class Uploads extends Component {
   };
 
   onUploadFinish = (uploadResult, file) => {
+    this.addAttachment(uploadResult);
     this.setUploadState(false);
   };
 
@@ -35,7 +47,7 @@ class Uploads extends Component {
     const postData = {
       filename: file.name,
       mimeType: file.type,
-      path: '/album/123/',
+      path: 'album/123',
     };
 
     fetch('http://localhost:5000/get_credentials', {
@@ -48,25 +60,44 @@ class Uploads extends Component {
       .then(response => {
         return response.json();
       })
-      .then(params => {
-        console.log(params);
+      .then(({url, fields}) => {
         callback(file, {
-          upload_url: params.url,
+          upload_url: url,
           params: {
-            acl: params.acl,
-            key: params.key,
-            policy: params.Policy,
-            'x-amz-signature': params['X-Amz-signature'],
-            'x-amz-algorithm': params['X-Amz-Algorith'],
-            'x-amz-date': params['X-Amz-Date'],
-            'x-amz-credential': params['X-Aamz-Credential'],
-            success_action_status: '201',
+            acl: fields.acl,
+            key: fields.key,
+            policy: fields.Policy,
+            success_action_status: fields.success_action_status,
+            'x-amz-signature': fields['X-Amz-Signature'],
+            'x-amz-algorithm': fields['X-Amz-Algorithm'],
+            'x-amz-date': fields['X-Amz-Date'],
+            'x-amz-credential': fields['X-Amz-Credential'],
           },
         });
       })
       .catch(error => {
         this.onUploadError(error);
       });
+  };
+
+  renderAttachments = () => {
+    const {attachments} = this.state;
+
+    return (
+      <div className="attachments">
+        <h3>Attachments</h3>
+        {attachments.map(attachment => (
+          <a
+            className="attachment"
+            key={attachment.etag}
+            target="_blank"
+            rel="noopener noreferrer"
+            href={attachment.location}>
+            {attachment.key}
+          </a>
+        ))}
+      </div>
+    );
   };
 
   renderError = () => {
@@ -80,10 +111,6 @@ class Uploads extends Component {
         </div>
       );
     }
-  };
-
-  setInputRef = input => {
-    this.uploadInput = input;
   };
 
   renderButton = () => {
@@ -104,6 +131,7 @@ class Uploads extends Component {
   render() {
     return (
       <div id="uploader">
+        {this.renderAttachments()}
         <S3PostUploader
           onProgress={this.onUploadProgress}
           onFinish={this.onUploadFinish}
