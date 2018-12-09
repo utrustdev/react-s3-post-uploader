@@ -25,6 +25,7 @@ async function getCredentials(ctx) {
     Bucket: awsConfig.bucket,
     Fields: {
       key: [ctx.request.body.path, ctx.request.body.filename].join('/'),
+      'Content-Type': ctx.request.body.mimeType,
       success_action_status: '201',
       acl: 'public-read',
     },

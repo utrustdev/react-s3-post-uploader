@@ -68,6 +68,7 @@ class Uploads extends Component {
             key: fields.key,
             policy: fields.Policy,
             success_action_status: fields.success_action_status,
+            'content-type': fields['Content-Type'],
             'x-amz-signature': fields['X-Amz-Signature'],
             'x-amz-algorithm': fields['X-Amz-Algorithm'],
             'x-amz-date': fields['X-Amz-Date'],
