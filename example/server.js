@@ -39,7 +39,6 @@ async function getCredentials(ctx) {
       console.error('Presigning post data encountered an error', err);
       ctx.body = err;
     } else {
-      //data.Fields.key = 'path/to/uploads/${filename}';
       console.log('The post data is', data);
       ctx.body = data;
     }
