@@ -8,3 +8,5 @@ As first set correctly `awsConfig` credentials (`accessKeyId`, `secretAccessKey`
 `server.js` file.
 
 Execute `yarn start-example`. The server  with react application will be started.
+
+![Output sample](public/s3-post-uploader-screencast.gif)

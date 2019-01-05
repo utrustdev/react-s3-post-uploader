@@ -1,5 +1,4 @@
-import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import S3PostUploader from '../S3PostUploader';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
