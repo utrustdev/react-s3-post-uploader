@@ -9,7 +9,7 @@ React component for S3 uploads via POST (only) ([sigv4-post-example](https://doc
 ## Code Example (simplified)
 Working full example (eg. with rendering errors) is [here](example/src/components/Uploads/index.jsx)
 
-```
+```jsx
 import S3PostUploader from 'react-s3-post-uploader';
 
 
@@ -67,13 +67,13 @@ class Uploads extends Component {
 }
 ```
 #### S3PostUploader Props
-- `onProgress` method called when uploading is started. Can be used to set some uploading state.
-- `onFinish` function getting `(s3Result, file)` where `s3Result` is result from S3 and file is chosen file.
+- `onProgress` - method called when uploading is started. Can be used to set some uploading state.
+- `onFinish` - function getting `(s3Result, file)` where `s3Result` is result from S3 and file is chosen file.
 You can find relevant types [here](src/S3PostUploader.jsx) (type S3Result ...)
-- `onError` function getting `(error)`. Error returning from S3 if something went wrong with upload. Relevant type in [here](src/S3PostUploader.jsx) (type Error ...)
-- `getCredentials` function getting `(file, callback)`. File is chosen file. The `callback` is function
+- `onError` - function getting `(error)`. Error returning from S3 if something went wrong with upload. Relevant type in [here](src/S3PostUploader.jsx) (type Error ...)
+- `getCredentials` - function getting `(file, callback)`. File is chosen file. The `callback` is function
 responsible for uploading file on S3 via POST with required credentials we were fetched from server.
-- `inputRef` function getting reference to original file field. Used for save reference in component and
+- `inputRef` - function getting reference to original file field. Used for save reference in component and
 call actions later on it (as shown in simple example above).
 
 ## Working Example
