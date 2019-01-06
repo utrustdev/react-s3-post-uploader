@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import S3PostUploader from '../S3PostUploader';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -35,7 +35,7 @@ class Uploads extends Component {
   };
 
   setUploadState = (loading, error) => {
-    this.setState({isLoading: loading, uploadError: error});
+    this.setState({ isLoading: loading, uploadError: error });
   };
 
   addAttachment = attachment => {
@@ -74,7 +74,7 @@ class Uploads extends Component {
       .then(response => {
         return response.json();
       })
-      .then(({url, fields}) => {
+      .then(({ url, fields }) => {
         callback(file, {
           upload_url: url,
           params: {
@@ -96,7 +96,7 @@ class Uploads extends Component {
   };
 
   renderAttachments = () => {
-    const {attachments} = this.state;
+    const { attachments } = this.state;
 
     return (
       <List className="attachments">
@@ -105,7 +105,8 @@ class Uploads extends Component {
           <ListItem
             key={attachment.etag}
             onClick={this.openAttachment(attachment.location)}
-            button>
+            button
+          >
             <Avatar>
               <ImageIcon />
             </Avatar>
@@ -120,7 +121,7 @@ class Uploads extends Component {
   };
 
   renderError = () => {
-    const {uploadError} = this.state;
+    const { uploadError } = this.state;
 
     if (uploadError) {
       return (
@@ -133,7 +134,7 @@ class Uploads extends Component {
   };
 
   renderButton = () => {
-    const {isLoading} = this.state;
+    const { isLoading } = this.state;
 
     if (isLoading) return <CircularProgress />;
 
@@ -149,7 +150,7 @@ class Uploads extends Component {
 
   render() {
     return (
-      <div class="uploads">
+      <div className="uploads">
         {this.renderAttachments()}
         <S3PostUploader
           onProgress={this.onUploadProgress}
