@@ -6,3 +6,4 @@ styleguide/
 coverage/
 yarn.lock
 .babelrc
+/example/node_modules

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import S3PostUploader from '../S3PostUploader';
+// For develop/testing purposes the package build is copying
+// S3PostUploader to components
+//import S3PostUploader from '../S3PostUploader';
+import S3PostUploader from 'react-s3-post-uploader';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

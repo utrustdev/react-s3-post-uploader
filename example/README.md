@@ -3,6 +3,9 @@ Example of upload application. The server is made with Koa js (https://koajs.com
 use `aws-sdk` package. The main component is in `src/components/Uploads`. The `src/S3PostUploader.jsx` component
 is builded component from `yarn build` (removed flow types) and copied here to `example` for usage.
 
+## Install dependencies
+`$ yarn`
+
 ## Run
 As first set correctly `awsConfig` credentials (`accessKeyId`, `secretAccessKey`, ...) in
 `server.js` file.

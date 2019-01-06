@@ -8443,6 +8443,15 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-s3-post-uploader@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-s3-post-uploader/-/react-s3-post-uploader-0.1.0.tgz#6c8ecdccaf91ca64f052b65209ef2b92cda1c2ed"
+  integrity sha512-240MzBsl078ddXe4OHtdrKRWuhOceMlWFa2FNYchgfinsABjuPZutSLCbZ3W6YCvJSA8SQC4iYFYtYTVhCQ7pA==
+  dependencies:
+    lodash "^4.17.11"
+    react "^16.6.3"
+    xml-js "^1.6.8"
+
 react-scripts@2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.3.tgz#6e49be279f4039fb9f330d2b3529b933b8e90945"
@@ -10572,6 +10581,13 @@ ws@^6.1.2:
   integrity sha512-rfUqzvz0WxmSXtJpPMX2EeASXabOrSMk1ruMOV3JBTBjo4ac2lDjGGsbQSyxj8Odhw5fBib8ZKEjDNvgouNKYw==
   dependencies:
     async-limiter "~1.0.0"
+
+xml-js@^1.6.8:
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.8.tgz#e06419c54235f18f4c2cdda824cbd65a782330de"
+  integrity sha512-kUv/geyN80d+s1T68uBfjoz+PjNUjwwf5AWWRwKRqqQaGozpMVsFsKYnenPsxlbN/VL7f0ia8NfLLPCDwX+95Q==
+  dependencies:
+    sax "^1.2.4"
 
 xml-name-validator@^3.0.0:
   version "3.0.0"

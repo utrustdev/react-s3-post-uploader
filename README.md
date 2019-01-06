@@ -1,14 +1,16 @@
 # react-s3-post-uploader
+[![](https://img.shields.io/github/license/zdenal/react-s3-post-uploader.svg)](https://github.com/zdenal/react-s3-post-uploader)
+
 React component for S3 uploads via POST (only) ([sigv4-post-example](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-post-example.html)).
 
 ## Install
-`$ npm install --save react-s3-post-uploader` (not working yet ... part of [TODO](https://github.com/zdenal/react-s3-post-uploader#todo))
+`$ npm install --save react-s3-post-uploader`
 
 ## Code Example (simplified)
 Working full example (eg. with rendering errors) is [here](example/src/components/Uploads/index.jsx)
 
 ```
-import S3PostUploader from 'S3PostUploader';
+import S3PostUploader from 'react-s3-post-uploader';
 
 
 class Uploads extends Component {
@@ -84,7 +86,6 @@ for running.
 
 - [ ] make [Upload](example/src/components/Uploads/index.jsx) example component with flow as [S3PostUploader](src/S3PostUploader.jsx) is
 - [ ] add linter tests on CI with indicator in README
-- [ ] publish as npm package
 - [ ] make better copy for `Contribution` section
 
 ## Contribution
