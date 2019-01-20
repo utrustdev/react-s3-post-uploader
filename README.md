@@ -1,10 +1,10 @@
 # react-s3-post-uploader
-[![](https://img.shields.io/github/license/zdenal/react-s3-post-uploader.svg)](https://github.com/zdenal/react-s3-post-uploader)
+[![](https://img.shields.io/github/license/utrustdev/react-s3-post-uploader.svg)](https://github.com/utrustdev/react-s3-post-uploader)
 
 React component for S3 uploads via POST (only) ([sigv4-post-example](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-post-example.html)).
 
 ## Install
-`$ npm install --save react-s3-post-uploader`
+`$ npm install --save @utrustdev/react-s3-post-uploader`
 
 ## Code Example (simplified)
 Working full example (eg. with rendering errors) is [here](example/src/components/Uploads/index.jsx)

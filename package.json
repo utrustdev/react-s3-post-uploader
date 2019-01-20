@@ -1,6 +1,6 @@
 {
-  "name": "react-s3-post-uploader",
-  "version": "0.1.1",
+  "name": "@utrustdev/react-s3-post-uploader",
+  "version": "0.1.0",
   "description": "React component that handle uploading to S3 bucket via POST.",
   "main": "index.js",
   "author": "Zdenko Nevrala",
@@ -8,7 +8,10 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:zdenal/react-s3-post-uploader.git"
+    "url": "git@github.com:utrustdev/react-s3-post-uploader.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "react",
