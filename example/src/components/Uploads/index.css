@@ -8,3 +8,9 @@ input[type='file'] {
 }
 .errorMessage {
 }
+
+.percentage {
+  position: relative;
+  margin-left: 10px;
+  top: -13px;
+}
