@@ -87,7 +87,7 @@ for running.
 
 ## TODO
 
-- [ ] make [Upload](example/src/components/Uploads/index.jsx) example component with flow as [S3PostUploader](src/S3PostUploader.jsx) is
+- [x] make [Upload](example/src/components/Uploads/index.jsx) example component with flow as [S3PostUploader](src/S3PostUploader.jsx) is
 - [ ] add linter tests on CI with indicator in README
 - [ ] make better copy for `Contribution` section
 
