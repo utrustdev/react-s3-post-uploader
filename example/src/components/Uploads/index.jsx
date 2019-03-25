@@ -3,7 +3,10 @@
 import React, { Component } from 'react';
 // For develop/testing purposes the package build is copying
 // S3PostUploader to components
-//import S3PostUploader from '../S3PostUploader';
+//import S3PostUploader, {
+//Error as UploadError,
+//S3Result,
+//} from '../S3PostUploader';
 import S3PostUploader, {
   Error as UploadError,
   S3Result,
