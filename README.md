@@ -10,7 +10,7 @@ React component for S3 uploads via POST (only) ([sigv4-post-example](https://doc
 Working full example (eg. with rendering errors) is [here](example/src/components/Uploads/index.jsx)
 
 ```jsx
-import S3PostUploader from 'react-s3-post-uploader';
+import S3PostUploader from '@utrustdev/react-s3-post-uploader';
 
 
 class Uploads extends Component {

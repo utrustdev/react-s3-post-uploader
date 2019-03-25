@@ -1,6 +1,6 @@
 {
   "name": "@utrustdev/react-s3-post-uploader",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React component that handle uploading to S3 bucket via POST.",
   "main": "index.js",
   "author": "Zdenko Nevrala",

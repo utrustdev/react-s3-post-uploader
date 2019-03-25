@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import S3PostUploader, {
   Error as UploadError,
   S3Result,
-} from 'react-s3-post-uploader';
+} from '@utrustdev/react-s3-post-uploader';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
