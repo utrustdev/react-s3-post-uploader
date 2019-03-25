@@ -16,6 +16,7 @@ import './index.css';
 class Uploads extends Component {
   state = {
     isLoading: false,
+    uploadPercentage: 0,
     uploadError: undefined,
     attachments: [],
   };
@@ -41,19 +42,31 @@ class Uploads extends Component {
     this.setState({ isLoading: loading, uploadError: error });
   };
 
+  setUploadPercentage = uploadPercentage => {
+    this.setState({ uploadPercentage: uploadPercentage });
+  };
+
   addAttachment = attachment => {
     this.setState(prevState => ({
       attachments: [...prevState.attachments, attachment],
     }));
   };
 
-  onUploadProgress = () => {
+  onUploadStart = () => {
     this.setUploadState(true);
+  };
+
+  onUploadProgress = progressEvent => {
+    const uploadPercentage = Math.round(
+      (progressEvent.loaded / progressEvent.total) * 100
+    );
+    this.setUploadPercentage(uploadPercentage);
   };
 
   onUploadFinish = (uploadResult, file) => {
     this.addAttachment(uploadResult);
     this.setUploadState(false);
+    this.setUploadPercentage(0);
   };
 
   onUploadError = error => {
@@ -137,9 +150,15 @@ class Uploads extends Component {
   };
 
   renderButton = () => {
-    const { isLoading } = this.state;
+    const { isLoading, uploadPercentage } = this.state;
 
-    if (isLoading) return <CircularProgress />;
+    if (isLoading)
+      return (
+        <>
+          <CircularProgress />
+          <label className="percentage">{uploadPercentage}%</label>
+        </>
+      );
 
     return (
       <div>
@@ -156,6 +175,7 @@ class Uploads extends Component {
       <div className="uploads">
         {this.renderAttachments()}
         <S3PostUploader
+          onStart={this.onUploadStart}
           onProgress={this.onUploadProgress}
           onFinish={this.onUploadFinish}
           onError={this.onUploadError}

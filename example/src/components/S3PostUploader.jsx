@@ -3,6 +3,7 @@
 import * as React from 'react';
 import jsonConvertor from 'xml-js';
 import _ from 'lodash';
+import axios from 'axios';
 
                  
                  
@@ -29,7 +30,8 @@ import _ from 'lodash';
 
               
                  
-                         
+                      
+                                    
                                      
                          
                                      
@@ -76,19 +78,19 @@ class S3PostUploader extends React.PureComponent        {
     { upload_url, params }                                          
   )       => {
     const formData = new FormData();
-    const { onProgress, onFinish, onError } = this.props;
+    const { onStart, onProgress, onFinish, onError } = this.props;
 
     _.keys(params).forEach(key => formData.append(key, params[key]));
 
-    if (onProgress) onProgress();
+    if (onStart) onStart();
     formData.append('file', file);
     this.clear();
 
-    fetch(upload_url, {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.text())
+    const config = onProgress ? { onUploadProgress: onProgress } : {};
+
+    axios
+      .post(upload_url, formData, config)
+      .then(response => response.data)
       .then(text => {
         const parsed = JSON.parse(
           jsonConvertor.xml2json(text, {

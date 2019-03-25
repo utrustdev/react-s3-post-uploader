@@ -23,7 +23,8 @@ class Uploads extends Component {
     this.uploadInput.click();
   };
 
-  onUploadProgress = () => {...}
+  onUploadStart = () => {...}
+  onUploadProgress = (progressEvent) => {...}
   onUploadFinish = (uploadResult, file) => {...}
   onUploadError = error => {...}
 
@@ -52,6 +53,7 @@ class Uploads extends Component {
 
   render() {
     <S3PostUploader
+      onStart={this.onUploadStart}
       onProgress={this.onUploadProgress}
       onFinish={this.onUploadFinish}
       onError={this.onUploadError}
@@ -67,7 +69,8 @@ class Uploads extends Component {
 }
 ```
 #### S3PostUploader Props
-- `onProgress` - method called when uploading is started. Can be used to set some uploading state.
+- `onStart` - method called when uploading is started. Can be used to set some uploading state.
+- `onProgress` - allows handling of progress events for uploads. The eventProgress struct is passing to function `{loaded: number, total: number, lengthComputable: boolean, ...}`. See usability for displaying uploaded percentage [here](example/src/components/Uploads/index.jsx)
 - `onFinish` - function getting `(s3Result, file)` where `s3Result` is result from S3 and file is chosen file.
 You can find relevant types [here](src/S3PostUploader.jsx) (type S3Result ...)
 - `onError` - function getting `(error)`. Error returning from S3 if something went wrong with upload. Relevant type in [here](src/S3PostUploader.jsx) (type Error ...)

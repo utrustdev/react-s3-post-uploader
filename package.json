@@ -21,6 +21,7 @@
     "bucket"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "xml-js": "^1.6.8"
