@@ -1,8 +1,16 @@
+// @flow
+
 import React, { Component } from 'react';
 // For develop/testing purposes the package build is copying
 // S3PostUploader to components
-//import S3PostUploader from '../S3PostUploader';
-import S3PostUploader from 'react-s3-post-uploader';
+//import S3PostUploader, {
+//Error as UploadError,
+//S3Result,
+//} from '../S3PostUploader';
+import S3PostUploader, {
+  Error as UploadError,
+  S3Result,
+} from 'react-s3-post-uploader';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,7 +21,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './index.css';
 
-class Uploads extends Component {
+type State = {
+  isLoading: boolean,
+  uploadPercentage: number,
+  uploadError: ?UploadError,
+  attachments: Array<S3Result>,
+};
+
+class Uploads extends Component<{}, State> {
   state = {
     isLoading: false,
     uploadPercentage: 0,
@@ -21,32 +36,34 @@ class Uploads extends Component {
     attachments: [],
   };
 
-  onClick = event => {
+  uploadInput: HTMLInputElement;
+
+  onClick = (event: SyntheticEvent<HTMLInputElement>) => {
     event.preventDefault();
     this.uploadInput.click();
   };
 
-  openAttachment = url => {
-    return event => {
+  openAttachment = (url: string) => {
+    return (event: SyntheticEvent<>) => {
       event.preventDefault();
       const win = window.open(url, '_blank');
       win.focus();
     };
   };
 
-  setInputRef = input => {
+  setInputRef = (input: HTMLInputElement) => {
     this.uploadInput = input;
   };
 
-  setUploadState = (loading, error) => {
+  setUploadState = (loading: boolean, error: UploadError) => {
     this.setState({ isLoading: loading, uploadError: error });
   };
 
-  setUploadPercentage = uploadPercentage => {
+  setUploadPercentage = (uploadPercentage: number) => {
     this.setState({ uploadPercentage: uploadPercentage });
   };
 
-  addAttachment = attachment => {
+  addAttachment = (attachment: S3Result) => {
     this.setState(prevState => ({
       attachments: [...prevState.attachments, attachment],
     }));
@@ -56,24 +73,24 @@ class Uploads extends Component {
     this.setUploadState(true);
   };
 
-  onUploadProgress = progressEvent => {
+  onUploadProgress = (progressEvent: ProgressEvent) => {
     const uploadPercentage = Math.round(
       (progressEvent.loaded / progressEvent.total) * 100
     );
     this.setUploadPercentage(uploadPercentage);
   };
 
-  onUploadFinish = (uploadResult, file) => {
+  onUploadFinish = (uploadResult: S3Result, file: File) => {
     this.addAttachment(uploadResult);
     this.setUploadState(false);
     this.setUploadPercentage(0);
   };
 
-  onUploadError = error => {
+  onUploadError = (error: UploadError) => {
     this.setUploadState(false, error);
   };
 
-  getCredentials = (file, callback) => {
+  getCredentials = (file: File, callback: Function) => {
     const postData = {
       filename: file.name,
       mimeType: file.type,

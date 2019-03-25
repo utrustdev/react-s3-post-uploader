@@ -5,13 +5,13 @@ import jsonConvertor from 'xml-js';
 import _ from 'lodash';
 import axios from 'axios';
 
-type S3Result = {
+export type S3Result = {
   bucket: string,
   etag: string,
   location: string,
 };
 
-type Error = {
+export type Error = {
   code: string,
   message: string,
 };
