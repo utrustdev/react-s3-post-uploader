@@ -37,7 +37,7 @@ import axios from 'axios';
                                      
                    
          
-                                                            
+                                                           
             
   
 
@@ -75,7 +75,7 @@ class S3PostUploader extends React.PureComponent        {
   /* eslint-disable camelcase */
   uploadToS3 = (
     file      ,
-    { upload_url, params }                                          
+    { uploadUrl, params }                                         
   )       => {
     const formData = new FormData();
     const { onStart, onProgress, onFinish, onError } = this.props;
@@ -89,7 +89,7 @@ class S3PostUploader extends React.PureComponent        {
     const config = onProgress ? { onUploadProgress: onProgress } : {};
 
     axios
-      .post(upload_url, formData, config)
+      .post(uploadUrl, formData, config)
       .then(response => response.data)
       .then(text => {
         const parsed = JSON.parse(
