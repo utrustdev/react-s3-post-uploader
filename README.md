@@ -35,7 +35,7 @@ class Uploads extends Component {
       })
       .then(({url, fields}) => {
         callback(file, {
-          upload_url: url,
+          uploadUrl: url,
           params: {
             acl: fields.acl,
             key: fields.key,
